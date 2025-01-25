@@ -2,6 +2,8 @@
 
 This repository contains code for a Kanban application.
 
+[Demo Preview](https://minimal-kanban.netlify.app)
+
 ## Instructions
 
 1. Install dependencies by running `yarn install`
