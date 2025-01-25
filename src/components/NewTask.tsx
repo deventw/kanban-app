@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 type TaskCardProps = {
   onAddTask: (title: string, description: string) => void;
@@ -10,15 +10,18 @@ export const NewTask = (props: TaskCardProps) => {
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskDescription, setNewTaskDescription] = useState("");
 
-  const handleAddTask = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newTaskTitle) return;
+  const handleAddTask = useCallback(
+    (event: React.FormEvent) => {
+      event.preventDefault();
+      if (!newTaskTitle) return;
 
-    onAddTask(newTaskTitle, newTaskDescription);
+      onAddTask(newTaskTitle, newTaskDescription);
 
-    setNewTaskTitle("");
-    setNewTaskDescription("");
-  };
+      setNewTaskTitle("");
+      setNewTaskDescription("");
+    },
+    [newTaskTitle, newTaskDescription, onAddTask]
+  );
 
   return (
     <form
@@ -46,7 +49,7 @@ export const NewTask = (props: TaskCardProps) => {
         />
         <button
           type="submit"
-          className="mt-4 w-full rounded-lg bg-green-600 hover:bg-green-500 text-white p-2 transition duration-200"
+          className="mt-4 w-full rounded-lg bg-blue-400 hover:bg-blue-300 text-white p-2 transition duration-200"
         >
           Add
         </button>
